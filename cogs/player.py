@@ -7,6 +7,56 @@ from OSRS_Hiscores import Hiscores
 
 log = logger.logger
 
+SKILLTOEMO = {"attack": "ATT",
+              "defense": "DEF",
+              "strength": "STR",
+              "hitpoints": "HIT",
+              "ranged": "RAN",
+              "prayer": "PRA",
+              "magic": "MAG",
+              "cooking": "COO",
+              "woodcutting": "WOO",
+              "fletching": "FLE",
+              "fishing": "FIS",
+              "firemaking": "FIR",
+              "crafting": "CRA",
+              "smithing": "SMI",
+              "mining": "MIN",
+              "herblore": "HER",
+              "agility": "AGI",
+              "thieving": "THI",
+              "slayer": "SLA",
+              "farming": "FAR",
+              "runecrafting": "RUN",
+              "hunter": "HUN",
+              "construction": "CON",
+              "total": "STA"}
+
+EMOTOSKILL = {"ATT": "attack",
+              "DEF": "defense",
+              "STR": "strength",
+              "HIT": "hitpoints",
+              "RAN": "ranged",
+              "PRA": "prayer",
+              "MAG": "magic",
+              "COO": "cooking",
+              "WOO": "woodcutting",
+              "FLE": "fletching",
+              "FIS": "fishing",
+              "FIR": "firemaking",
+              "CRA": "crafting",
+              "SMI": "smithing",
+              "MIN": "mining",
+              "HER": "herblore",
+              "AGI": "agility",
+              "THI": "thieving",
+              "SLA": "slayer",
+              "FAR": "farming",
+              "RUN": "runecrafting",
+              "HUN": "hunter",
+              "CON": "construction",
+              "STA": "total"}
+
 
 class Player(commands.Cog):
     def __init__(self, bot):
@@ -14,11 +64,13 @@ class Player(commands.Cog):
 
     @commands.command()
     async def lookup(self, ctx):
-        user = Hiscores('Lord_Duskk','N')
+        user = Hiscores('Lord_Duskk', 'N')
 
-        print(user.stats)
+        embed = GG.EmbedWithAuthor(ctx)
 
-        await ctx.send(user.skill('total'))
+        embed.title = 'Lord_Duskk'
+        for x in SKILLTOEMO:
+            print(x)
 
 
 def setup(bot):
