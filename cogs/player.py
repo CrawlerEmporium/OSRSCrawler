@@ -70,7 +70,8 @@ class Player(commands.Cog):
 
         embed.title = 'Lord_Duskk'
         for x in SKILLTOEMO:
-            print(x)
+            embed.add_field(name=f":{SKILLTOEMO.get(x)}: {x.capitalize()}",value=f"{user.skill(x)}")
+        await ctx.send(embed=embed)
 
 
 def setup(bot):
