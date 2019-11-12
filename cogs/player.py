@@ -63,14 +63,16 @@ class Player(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def lookup(self, ctx):
-        user = Hiscores('Lord_Duskk', 'N')
+    async def lookup(self, ctx, username):
+        guild = await self.bot.fetch_guild(584842413135101990)
+        user = Hiscores(username, 'N')
 
         embed = GG.EmbedWithAuthor(ctx)
 
-        embed.title = 'Lord_Duskk'
+        embed.title = username
         for x in SKILLTOEMO:
-            embed.add_field(name=f":{SKILLTOEMO.get(x)}: {x.capitalize()}",value=f"{user.skill(x)}")
+            emoji = discord.utils.get(guild.emojis, name=SKILLTOEMO.get(x))
+            embed.add_field(name=f"{emoji} {x.capitalize()}",value=f"{user.skill(x)}")
         await ctx.send(embed=embed)
 
 
